@@ -109,12 +109,12 @@ async fn create_request() -> Result<Request<()>, Box<dyn Error>> {
     }
 }
 
-struct Negotiaion {
+struct Negotiation {
     token: String,
     cookie: String,
 }
 
-async fn negotiate() -> Result<Negotiaion, Box<dyn Error>> {
+async fn negotiate() -> Result<Negotiation, Box<dyn Error>> {
     trace!("negotiating");
 
     let url = Url::parse_with_params(
@@ -138,7 +138,7 @@ async fn negotiate() -> Result<Negotiaion, Box<dyn Error>> {
 
     trace!(?json, "negotiation response");
 
-    Ok(Negotiaion {
+    Ok(Negotiation {
         token: json["ConnectionToken"]
             .as_str()
             .unwrap_or_default()
